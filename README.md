@@ -1,10 +1,12 @@
-# Blend-Exchange
-Blend exchange source code
+#Blend Exchange
+Follow @mhsjlw on a journey to fix @GiantCowFilms' Node.js version of Blend Exchange! Now featuring actual database administration!
 
-## Nodejs edition:
+##Contribute
+If you wish to contribute pull requests are welcome! However please do not change any graphics files!
 
-Not working, ignore it!
+##Running
+To run the node.js server run:
+`npm install`
 
-##PHP edition:
+`node app.js`
 
-Designed to work with google drive for file storage
