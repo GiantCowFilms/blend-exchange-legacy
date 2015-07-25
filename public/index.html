@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>Blend exchange</title>
+        <link rel="stylesheet" media="screen" href="css/style.css" />
+        <link rel="shortcut icon" href="img/favicon.ico">
+    </head>
+    <body>
+        <div id="nav">
+            <div id="logo">
+                <span class="logoOrange">Blend</span><span class="logoBlue"> exchange</span>
+                <div><a class="logoCredit" href="http://github.com/mhsjlw">By mhsjlw</a></div>
+            </div>
+                <ul id="navLinks">
+                    <li><a href="#">Contribute</a> </li>
+                    <li><a href="#">Help</a>&nbsp;</li>
+                </ul>
+        </div>
+        <div id="uploadContainer">
+            <div id="uploadTarget">
+                <div id="uploadText">
+                    <div class="centerText">
+                        Drag a file here to upload a .blend<br />
+                    </div>
+                </div>
+                <div id="uploadArea">
+
+                </div>
+            </div>
+            <div id="uploadOptions">
+                <input style="margin-top: 10px;" class="txtBlue" id="questionUrl" placeholder=" Enter the url of the queston on blender.stackexchange"/>
+                
+                <div style="margin-top: 10px; margin-bottom: 10px;">
+                    <label for="password">Optional: </label><input class="txtBlue" id="password" style="width: 531px;" placeholder=" Enter a password to enabled editing or deleting"/>
+                </div>
+                <div id="cancel" class="btnBlue" style="width: 289px; display: inline-block;">
+                    Cancel
+                </div><div id="upload" class="btnBlue" style="width: 289px; margin-left: 10px; display: inline-block;">
+                    Upload
+                </div>
+            </div>
+            <div id="usageNotice">
+                <h2>
+                    Notice:
+                </h2>
+                This service is for blender.stackexchange questions and answers only. Files for other use will be removed. The purpose of this site is to allow users to upload .blends for to help their blender.stackexchange posts. Please flag all violating posts.
+            </div>
+        </div>
+        <script src="js/jquery.js"></script>
+        <script src="js/dropzone.js"></script>
+        <script>
+            var blendDropzone = new Dropzone("div#uploadContainer", { url: "/finish/", maxFilesize: 50, clickable: true, autoProcessQueue: false, acceptedFiles: ".blend", uploadMultiple: false, previewTemplate: '<div><div><h2 data-dz-name>Name.blend</h2><div class="progressContainer"  role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" ><div class="progress"style="width:0%;" data-dz-uploadprogress></div></div><span data-dz-size>- 3.5MB</span></div></div>', previewsContainer: "#uploadArea" });
+            blendDropzone.on("drop", function () {
+                $("#uploadText").hide();
+            });
+            blendDropzone.on("success", function (e,r) {
+                document.write(r);
+            });
+            $("#upload").click(function () {
+                var password = $("#password").val().trim();
+                var questionUrl = $("#questionUrl").val().trim();
+                if (/^http:\/\/blender.stackexchange.com\/questions\/[0-9]+\//.test(questionUrl)) {
+                    blendDropzone.options.url = "/finish/?url=" + questionUrl + "&password=" + password;
+                    blendDropzone.processQueue();
+                } else {
+                    alert(["This is not a valid question!"]);
+                }
+            });
+            $("#cancel").click(function () {
+                blendDropzone.removeAllFiles(true);
+            });
+        </script>
+    </body>
+</html>

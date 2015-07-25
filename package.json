@@ -5,7 +5,8 @@
 	"author": "mhsjlw http://github.com/mhsjlw http://twitter.com/mhsjlw",
 	"private": false,
 	"dependencies": {
-      "express": "2.5.8", 
-	  "jade": ">= 0.0.1"
+          "express": "2.5.8", 
+	  "jade": ">= 0.0.1",
+	  "multer": "~0.1.6"
   }
 }
