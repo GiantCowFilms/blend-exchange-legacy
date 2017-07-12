@@ -1,12 +1,12 @@
 <?php include("head.php");?>
 <body>
    <div class="wrapper"> <!-- needed for sticky footer -->
-   <div class="headspace"></div>
    <div id="header">
       <div id="logo">
-         <a href="/">
          <div class="logoText">
-            <span class="logoOrange">Blend</span><span class="logoBlue">-Exchange</span></a>
+            <a href="/">
+            <span class="logoOrange">Blend</span><span class="logoBlue">-Exchange</span>
+            </a>
             <div class="logoStatus">&#945;lpha</div>
          </div>
          <div class="tagLine">
