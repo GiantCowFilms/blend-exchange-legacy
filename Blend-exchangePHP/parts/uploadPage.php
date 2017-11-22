@@ -8,7 +8,7 @@
 
                     </div>
             </form>
-            <div id="uploadOptions">
+            <div id="uploadOptions" class="bodyStack">
                 <?php if ($loggedIn == true){
                         echo "
                         <div style='height: auto;' class='noticeWarning nwInfo bodyStack'>
@@ -28,4 +28,5 @@
                      </div>
                   </div>
             </div>
+
                

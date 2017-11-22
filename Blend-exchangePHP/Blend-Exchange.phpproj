@@ -42,7 +42,9 @@
     <Compile Include="parts\admin\utils\updateUrls.php" />
     <Compile Include="parts\blendViewCount.php" />
     <Compile Include="parts\blendDownloadCount.php" />
+    <Compile Include="parts\getQuotaInfo.php" />
     <Compile Include="parts\logger.php" />
+    <Compile Include="parts\quotaNotice.php" />
     <Compile Include="parts\registerForm.php" />
     <Compile Include="parts\editAccountForm.php" />
     <Compile Include="parts\verifyUrl.php" />
