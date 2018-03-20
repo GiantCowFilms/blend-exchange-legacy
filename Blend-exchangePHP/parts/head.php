@@ -17,6 +17,7 @@
     <head>
         <meta charset='utf-8'>
         <title>Blend-Exchange</title>
+        <meta name="viewport" content="width=device-width; initial-scale=1.0;">
         <link rel="stylesheet" media="screen" href="/layout.css" />
         <link rel="stylesheet" media="screen" href="/lighttheme.css" />
         <!-- pick stylesheet here with php and cookie magic -->
