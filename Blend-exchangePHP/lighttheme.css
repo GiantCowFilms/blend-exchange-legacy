@@ -392,6 +392,13 @@ tr:nth-child(even) {
     background-color: #29b0ff;
     color: white;
 }
+.nwInfo a, .nwDanger a {
+    color: #fefefe;
+    font-weight:500;
+}
+.nwInfo a:hover, .nwDanger a:hover {
+    color: #ff782a;
+}
 
 
 @media only screen and (max-width: 640px) {
