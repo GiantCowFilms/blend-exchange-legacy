@@ -56,3 +56,7 @@ Blend-exchangeNode/
 Google_Drive_Api/
 #secrets must be hidden
 secret/
+
+#don't wanna put the cache into version control
+cache/
+

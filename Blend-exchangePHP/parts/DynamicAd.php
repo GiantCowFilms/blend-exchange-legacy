@@ -33,12 +33,49 @@ class DynamicAd {
         $this->cacheText = $cacheText;
     }
 
+    public function setCachedValue() {
+        if (!is_dir('./cache')) {
+            // dir doesn't exist, make it
+            mkdir('./cache');
+        }
+        $cacheData = [
+            "expires" => time() + 24 * 60 * 60,
+            "value" => call_user_func($this->getText),
+        ];
+        $val = var_export($cacheData,true);
+        $cacheValue = '<?php $val = ' . $val . ';';
+        $cacheFileName = $this->imageName . '-cache';
+        file_put_contents('./cache/'.$cacheFileName,$cacheValue,LOCK_EX);
+        return $cacheData["value"];
+    }
+
+    public function getCachedValue()
+    {
+        $cacheFileName = $this->imageName . '-cache';
+        if (file_exists('./cache/' . $cacheFileName)) {
+            //based on https://blog.graphiq.com/500x-faster-caching-than-redis-memcache-apc-in-php-hhvm-dcd26e8447ad
+            //Requires opcache.max_files and memory_consumption to be increased in ini file. Overuse of memroy my cause crashes, so be careful
+            @include './cache/' . $cacheFileName;
+            if ($val["expires"] < time()) {
+                $value = $this->setCachedValue();
+            } else {
+                $value = $val["value"];
+            }
+        } else {
+            $value = $this->setCachedValue();
+        }
+        return $value;
+    }
 
     public function getString( )
     {
         //$this->getText(); *should* work but doesn't D:
-        return call_user_func($this->getText);
-    
+        if($this->cacheText) {
+            $value = $this->getCachedValue();
+        } else {
+            $value = call_user_func($this->getText);
+        }
+        return $value;
     }
 
     public function drawAdd( )
