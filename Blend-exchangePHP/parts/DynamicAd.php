@@ -9,7 +9,7 @@
  * @author GiantCowFilms
  */
 class DynamicAd {
-    
+
     public $textSettings;
     public $getText;
     public $imageName;
@@ -18,8 +18,10 @@ class DynamicAd {
     public $align;
     //Read from disk
     public $image;
-    
-    public function __construct($x,$y, $align = 'left', array $textSettings, $imageName, $getText, $cacheText = true)
+    public $font;
+    public $cacheText;
+
+    public function __construct($x,$y, $align = 'left', array $textSettings, $imageName, $getText, $cacheText = true, $font = "RalewayBold.ttf")
     {
         $this->x = $x;
         $this->y = $y;
@@ -27,23 +29,26 @@ class DynamicAd {
         $this->imageName = $imageName;
         $this->getText = $getText;
         $this->align = $align;
+        $this->font = $font;
+        $this->cacheText = $cacheText;
     }
-    
-    
+
+
     public function getString( )
     {
         //$this->getText(); *should* work but doesn't D:
-	    return call_user_func($this->getText);
-    }
+        return call_user_func($this->getText);
     
+    }
+
     public function drawAdd( )
     {
         if($this->align = 'center'){
             $bounds = imagettfbbox($this->textSettings["size"], 0, $this->getResources( )["font"], $this->getString());
-            
+
             $this->x = ceil((imagesx($this->getResources( )["image"]) - $bounds[2]) / 2);
         }
-        
+
         $resources = $this->getResources();
         $this->image = $this->getResources( )["image"];
 	    imagettftext(
@@ -62,7 +67,7 @@ class DynamicAd {
         );
         return $this->image;
     }
-    
+
     public function getResources( )
     {
         if(!isset($this->image)){
@@ -70,7 +75,7 @@ class DynamicAd {
         }
 	    return [
             'image' => $this->image,
-            'font' => "./fonts/"."RalewayBold.ttf"
+            'font' => "./fonts/".$this->font
         ];
     }
 }

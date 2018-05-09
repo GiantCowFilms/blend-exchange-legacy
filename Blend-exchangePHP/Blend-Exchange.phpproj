@@ -31,6 +31,7 @@
     <Compile Include="about\index.php" />
     <Compile Include="admin\adminTools\index.php" />
     <Compile Include="admin\users\index.php" />
+    <Compile Include="dynamicImg\animationNodesAdOne.php" />
     <Compile Include="dynamicImg\communityAdTwo.php" />
     <Compile Include="dynamicImg\communityAdOne.php" />
     <Compile Include="logout\index.php" />
@@ -43,6 +44,7 @@
     <Compile Include="parts\admin\utils\updateUrls.php" />
     <Compile Include="parts\blendViewCount.php" />
     <Compile Include="parts\blendDownloadCount.php" />
+    <Compile Include="parts\DynamicAd.php" />
     <Compile Include="parts\getQuotaInfo.php" />
     <Compile Include="parts\logger.php" />
     <Compile Include="parts\quotaNotice.php" />
@@ -203,7 +205,9 @@
     <Content Include=".htaccess" />
     <Content Include="document.txt" />
     <Content Include="dropzone.js" />
-    <Content Include="dynamicImg\font\Raleway-Bold.ttf" />
+    <Content Include="dynamicImg\fonts\RalewayBold.ttf" />
+    <Content Include="dynamicImg\fonts\RobotoCondensed-Light.ttf" />
+    <Content Include="dynamicImg\img\AnimationNodesAdOne.png" />
     <Content Include="dynamicImg\img\DynamicAdTwo.png" />
     <Content Include="dynamicImg\img\DynamicCommunityAdOne.png" />
     <Content Include="favicon.ico" />
@@ -233,8 +237,8 @@
   <ItemGroup>
     <Folder Include="admin\users\" />
     <Folder Include="dynamicImg\" />
+    <Folder Include="dynamicImg\fonts\" />
     <Folder Include="dynamicImg\img\" />
-    <Folder Include="dynamicImg\font\" />
     <Folder Include="img\" />
     <Folder Include="me\" />
     <Folder Include="logout\" />
