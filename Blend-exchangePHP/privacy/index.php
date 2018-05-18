@@ -2,26 +2,42 @@
         <div id="mainContainer">
             <p>Please also see our <a href="/terms">Terms of Service</a></p>
 
-            In this document Blend-Exchange ("we","us") refers to the operators of this website ("the Blend-Exchange service","the service").
+            <h1>Blend-Exchange Privacy Policy</h1>
 
-            <h2>Data Collection & Processing</h2>
+            In this document Blend-Exchange ("we","us") refers to the operators of this website ("the Blend-Exchange service","the service"). You ("the user","user") refers to any user of the Blend-Exchange service. Content providers refers to services that provide data either as loadable resources (including but not limited to fonts, javascript files and images) or technical services (including bot not limited file storage services).
 
-            Any data that Blend-Exchange collects and processes will be shared whenever Blend-Exchange is legally compelled to share the data. Blend-Exchange collects and processes the following data:
+            <h2>Data Sharing</h2>
+            We may share the data we collect (as defined byt the section on Data Collection) in various ways, including the following:
+            
+            <ul>
+                <li><b>In Aggregate Form:</b> Blend-Exchange will disclose your personal information when legally permissible in aggregate or anyonomized form so long as it cannot be reasonably used to identify you.</li>
+                <li><b>As Required by Law:</b> Any information held by Blend-Exchange will be disclosed to satisfy any particular law, legal process or governemental request.</li>
+                <li><b>Third party providers:</b> Blend-Exchange shares your personal data with third party providers as is required to provide the Blend-Exchange service.</li>
+                <li>
+                    <b>As required to operate the Blend-Exchange service</b> Some of the data we collect is shared to various 3rd parties (who these parties are is specified below in the section on Data Collection for each kind of data we collect). This is done when required to provide the Blend-Exchange service's functionality.
+                </li>
+            </ul>
+
+            For more specifics on which type of data gets shared with which 3rd parties and how it is shared, see below.
+
+            <h2>Data Collection</h2>
+
+            Blend-Exchange collects and processes the following data:
 
             <h3>Technical Data</h3>
 
-            Technical Data is data that your browser sends our servers or provides to our webpage. This includes:
+            "Technical Data" is data that your device sends our servers or provides to our webpage. This includes:
 
             <ul>
                 <li>IP Addresses</li>
                 <li>HTTP-Header meta data. This is data that is sent along with a request to our server.</li>
             </ul>
 
-            Blend-Exchange keeps this data in order to better protect, maintain, and develop the Blend-Exchange service. Technical Data may be linked to user accounts or any other kind of collected data. In addition, Technical Data may be associated with other user data including accounts and uploaded blend files. Technical Data is stored in log files, sometimes as a hash.
+            Blend-Exchange keeps this data in order to better protect, maintain, and develop the Blend-Exchange service. Technical Data may be linked to user accounts or any other kind of collected data. In addition, Technical Data may be associated with other user data including accounts and uploaded blend files. Technical Data is stored in log files, sometimes in hashed form for security reasons.
 
-            In addition, Technical Data will be sent to the following 3rd party providers content providers:
-
+            In addition, Technical Data will be sent to the following 3rd party content providers:
             <ul><li>Google Fonts. Please see their privacy policy here (<a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>)</li></ul>
+
 
             <h3>Shared/Uploaded Data</h3>
 
@@ -33,7 +49,7 @@
                 <li>A reference to the current authenticated account (if the user is logged in).</li>
             </ul>
 
-            All of the listed data is avaible publicly for download.
+            All of the listed data is available publicly for download. Blend files are stored using Google Drive. See their privacy polices for more details (<a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>).
 
             <h3>Account Data</h3>
             <p>
@@ -41,12 +57,12 @@
             </p>
             <ul>
                 <li>The <b>username</b> provided when registering. This is stored in a database without encryption. This information is publicly  accessible without restriction.</li>
-                <li>The <b>email</b> provided when registering. This is stored in a database without encryption. This email is not pubically accessible, and will only be used to notify the user of the following:
+                <li>The <b>email</b> provided when registering. This is stored in a database without encryption. This email is not publicly accessible, and will only be used to notify the user of the following:
                     <ul>
                         <li>Updates/Events relating to the security of the Blend-Exchange service and the user's personal information.</li>
                         <li>Updates to the privacy policy or terms of service of Blend-Exchange.</li>
                         <li>Responses to inquires made by the user via email. (Responses will be to the inquiring address)</li>
-                        <li>Notifications of termination/removal/modification of services. (Services may be terminated without notification). This is to help prevent any inconvience for users.</li>
+                        <li>Notifications of termination/removal/modification of services. (Services may be terminated without notification). This is to help prevent any inconvenience for users.</li>
                     </ul>
                 </li>
                 <li>A <b>hash of the password</b> provided when registering.  This is stored in a database without additional encryption.</li>
@@ -60,7 +76,9 @@
             </p>
 
             <h3>Use of Cookies</h3>
-            Blend-Exchange uses cookies to check authentication for users with accounts. They are not used for any other kind of tracking.
+            Blend-Exchange uses cookies (small bits of data placed on your device) to check if users are logged into accounts. They are not used for any other kind of tracking. If you do not wish to be tracked with cookies created by Blend-Exchange (not including 3rd party cookies), disable cookies in your browser for this site or <a href="logout/">logout</a>. Blend-Exchange's content providers may use cookies for their own purposes, as described by their respective privacy polices. The following third parties have the ability to create and read cookies on your device if your device permits:
+               
+            <ul><li>Google Fonts. Please see their privacy policy here (<a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>)</li></ul>
 
             <h3>Logged Actions</h3>
             Certain User Actions (A specific web request or set of web requests that triggers a specfic action) are recorded in conjunction with linked techincal data. The following user actions are recorded:
@@ -72,7 +90,7 @@
                 <li>Visiting a Page</li>
             </ul>
 
-            These User Actions are not shared publicly and are used for the security, development, and maintanence of Blend-Exchange.
+            These User Actions are not shared publicly and are used for the security, development, and maintenance of Blend-Exchange.
 
             <h3>Public Actions</h3>
 
@@ -88,23 +106,35 @@
 
             <h2>Uses of Data</h2>
 
-            The data Blend-Exchange collects is used to provide the Blend-Exchange service. We only collect data required to provide users with the services as described, and secure the Blend-Exchange service. If you feel any data collection performed by Blend-Exchange is uneccsary, please make contact. How the data is used to fufill these goals is described above.
+            The data Blend-Exchange collects is used to provide the Blend-Exchange service. Specifically, it is used to:
+
+            <ul>
+                <li>Make the service function.</li>
+                <li>Comply with regulations and laws.</li>
+                <li>Contact you about the Blend-Exchange service as is required to serve you.</li>
+            </ul>
 
             <h2>Data Storage</h2>
 
             All data collected by Blend-Exchange is stored within the United States using the methods described in the previous section.
 
-            <h2>Controling Your Data</h2>
+            <h2>Controlling Your Data</h2>
 
             <h3>Accessing Data Held by Blend-Exchange</h3>
             <p>
                 The user profile includes links to the binary files uploaded. They can be downloaded from there in the original format in which they were uploaded.
-                The provided password cannot be retrived in any form due to security concerns. Other account details can be obtained in plain text from the user profile page. Please contact blend-exchange if assitance is needed.
+                The provided password cannot be retrieved in any form due to security concerns. Other account details can be obtained in plain text from the user profile page. Please contact blend-exchange if assistance is needed.
             </p>
             <h3>Removal of Data Held by Blend-Exchange</h3>
              
             <p>
-                If you need your data removed, please make contact. Blend-exchange will attempt to remove your data when the operator can allocate the suffcient time without undue inconvience. Blend-Exchange may refuse to remove certain data if it is not legally oblidged to remove that data.
+                If you need your data removed, please make contact. Blend-exchange will attempt to remove your data when the operator can allocate the sufficient time without undue inconvenience. Blend-Exchange may refuse to remove certain data if it is not legally obliged to remove that data.
+            </p>
+
+            <h3>Correction of Data Held by Blend-Exchange</h3>
+
+            <p>
+                To correct any personal data held by Blend-Exchange, please make contact. Your username, email and password can all be updated from your user account page.
             </p>
 
             Blend-Exchange can be contacted via the following email address:
