@@ -47,10 +47,13 @@
     <Compile Include="parts\DynamicAd.php" />
     <Compile Include="parts\getQuotaInfo.php" />
     <Compile Include="parts\logger.php" />
+    <Compile Include="parts\privacy\consentRequirements.php" />
+    <Compile Include="parts\privacy\PrivacyManager.php" />
     <Compile Include="parts\quotaNotice.php" />
     <Compile Include="parts\registerForm.php" />
     <Compile Include="parts\editAccountForm.php" />
     <Compile Include="parts\verifyUrl.php" />
+    <Compile Include="privacy\index.php" />
     <Compile Include="register\index.php" />
     <Compile Include="login\index.php" />
     <Compile Include="parts\userAccount.php" />
@@ -243,6 +246,8 @@
     <Folder Include="img\" />
     <Folder Include="me\" />
     <Folder Include="logout\" />
+    <Folder Include="parts\privacy\" />
+    <Folder Include="privacy\" />
     <Folder Include="parts\admin\utils\" />
     <Folder Include="admin\runUtil\" />
     <Folder Include="finish\verifyUrl\" />

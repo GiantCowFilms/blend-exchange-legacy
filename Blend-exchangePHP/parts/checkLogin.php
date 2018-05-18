@@ -1,9 +1,9 @@
 <?php
 
-if (session_status() == PHP_SESSION_NONE) {
-    session_set_cookie_params(86400 * 50);
-    session_start();
-    session_regenerate_id();
+if (session_status() == PHP_SESSION_NONE && isset($_COOKIE["PHPSESSID"])) {
+   session_set_cookie_params(86400 * 50);
+   session_start();
+   session_regenerate_id();
 }
 $loggedIn = false;
 $admin = false;

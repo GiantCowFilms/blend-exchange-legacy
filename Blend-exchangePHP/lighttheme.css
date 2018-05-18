@@ -140,20 +140,20 @@ h1 {
    color: #777;
 }
 .txtBlueError{
-   animation: txtBlueError 2s;
-   -webkit-animation: txtBlueError 2s; /* Chrome, Safari, Opera */
+   animation: txtBlueError 4s;
+   -webkit-animation: txtBlueError 4s; /* Chrome, Safari, Opera */
 }
 .txtBlueError::-moz-placeholder {
-   animation: txtBlueErrorPlaceholder 2s;
-   -webkit-animation: txtBlueErrorPlaceholder 2s; /* Chrome, Safari, Opera */
+   animation: txtBlueErrorPlaceholder 4s;
+   -webkit-animation: txtBlueErrorPlaceholder 4s; /* Chrome, Safari, Opera */
 }
 .txtBlueError:-ms-input-placeholder {
-   animation: txtBlueErrorPlaceholder 2s;
-   -webkit-animation: txtBlueErrorPlaceholder 2s; /* Chrome, Safari, Opera */
+   animation: txtBlueErrorPlaceholder 4s;
+   -webkit-animation: txtBlueErrorPlaceholder 4s; /* Chrome, Safari, Opera */
 }
 .txtBlueError::-webkit-input-placeholder {
-   animation: txtBlueErrorPlaceholder 2s;
-   -webkit-animation: txtBlueErrorPlaceholder 2s; /* Chrome, Safari, Opera */
+   animation: txtBlueErrorPlaceholder 4s;
+   -webkit-animation: txtBlueErrorPlaceholder 4s; /* Chrome, Safari, Opera */
 }
 
 /*Button styles*/

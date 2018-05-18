@@ -8,6 +8,17 @@
 
                     </div>
             </form>
+            <div class="bodyStack">
+                <p>
+<b>Consent is required to upload .blend files:</b></p>
+                <div id="privacyAgreements">
+                    <?php include("privacy/consentRequirements.php");
+                          echo $upload_consent_requirements->generateConsentFormSegement();
+                    ?>                   
+                    </div>
+  Please see the
+            <a href="/privacy">privacy policy for further details.</a>
+            </div>
             <div id="uploadOptions" class="bodyStack">
                 <?php if ($loggedIn == true){
                         echo "
@@ -18,11 +29,11 @@
                     } 
                 ?>
                 <div id="uploadUrlError" style="display: none; height: auto;" class="noticeWarning nwDanger bodyStack">
-                    The provided url is not valid, please copy and paste the <b>entire</b> url, including the "https://" header.
+
                 </div>
-               <input class="txtBlue bodyStack" <?php if(isset($embedUpload) && ($embedUpload == true)){echo 'style="display: none;"';}?> id="questionUrl" placeholder="Enter the url of the question on blender.stackexchange" value="<?php if(isset($questionLink)) { echo $questionLink; }?>"/>
+
                   <div>
-                     <input class="txtBlue bodyStack" id="password" placeholder="Enter a password to enable editing or deleting (optional)"/>
+                      <input class="txtBlue bodyStack" <?php if(isset($embedUpload) && ($embedUpload == true)){echo 'style="display: none;"';}?> id="questionUrl" placeholder="Enter the url of the question on blender.stackexchange" value="<?php if(isset($questionLink)) { echo $questionLink; }?>" />
                      <div id="upload" class="btnBlue bodyStack">
                         Upload
                      </div>
