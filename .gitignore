@@ -49,6 +49,9 @@ Temporary Items
 
 secret.json
 
+#log files
+*.log
+
 #node version
 Blend-exchangeNode/
 
