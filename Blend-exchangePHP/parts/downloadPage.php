@@ -4,9 +4,12 @@
             //Process flags
             $virusAlert = false;
             $copyrightAlert = false;
-            if(count($blendData["flags"]) != 0) {
-                foreach ($blendData["flags"] as $flag)
+            if(count($blend->flags) != 0) {
+                foreach ($blend->flags as $flag)
                 {
+                    if ($flag["accept"] == 2) {
+                        continue;
+                    }
                     if ($flag["val"] == "virus"){
                         $virusAlert = true;
                     };
@@ -18,12 +21,12 @@
         ?>
         <div id="mainContainer">
             <?php
-            if ($blendData["adminComment"] != ""){
+            if ($blend->adminComment != ""){
                 echo "<div class=\"noticeWarning nwInfo bodyStack\">
-                ".$blendData["adminComment"]."
+                ".$blend->adminComment."
                 </div>";
             }
-            if ($blendData["deleted"] == 1) {
+            if ($blend->deleted == 1) {
                 echo "            <div class=\"noticeWarning nwDanger bodyStack\">
                     This file was deleted.
                 </div>";
@@ -50,16 +53,16 @@
                         <img class="blendDisplayIcon" src="/blenderFileIcon.png"/>
                         <div class="blendDisplayContainer" style="display: inline-block; margin-top: 25px; text-align: left;">
                             <h2 class="blendDisplayTitle">
-                                <?php echo $blendData["fileName"];  ?>
+                                <?php echo $blend->fileName;  ?>
                             </h2>
                             <span class="downloadQuestionLink">
-                                 <a href="<?php echo $blendData["questionLink"] ?>">View Question</a>
+                                 <a href="<?php echo $blend->questionLink ?>">View Question</a>
                                 <br />
-                                <?php echo round(intval($blendData["fileSize"])/1000000, 1, PHP_ROUND_HALF_UP); ?> MB
+                                <?php echo round(intval($blend->fileSize)/1000000, 1, PHP_ROUND_HALF_UP); ?> MB
                                 <br />
-                                <?php echo $blendData["views"] ?> views <br />
-                                <?php echo $blendData["downloads"] ?> downloads<br />
-                                <?php echo $blendData["favorites"] ?> favorites
+                                <?php echo $blend->views ?> views <br />
+                                <?php echo $blend->downloads ?> downloads<br />
+                                <?php echo $blend->favorites ?> favorites
                             </span>
                         </div>
                 </div>
@@ -73,7 +76,7 @@
                 </div><div id="favoriteBtn" class="btnBlue downloadBtnRow">
                     Favorite
                 </div><div id="downloadFile" class="btnBlue downloadBtnRow" style="margin-right: 0">
-                    <a href="/d/<?php echo $blendData["id"] ?>/<?php echo $blendData["fileName"] ?>">Download</a>
+                    <a href="/d/<?php echo $blend->id ?>/<?php echo $blend->fileName ?>">Download</a>
                 </div>
             </div>
             <?php include("flagForm.php"); ?>
@@ -84,7 +87,7 @@
             ?>
             <h2 style="margin-top: 5px; margin-bottom: 5px;">Share this file:</h2>
             <div>Add this text into your post:</div>
-            <textarea id="embedCode" class="txtBlue">[<img src="https://blend-exchange.giantcowfilms.com/embedImage.png?bid=<?php echo $blendData["id"]; ?>" />](https://blend-exchange.giantcowfilms.com/b/<?php echo $blendData["id"]; ?>/)</textarea>
+            <textarea id="embedCode" class="txtBlue">[<img src="https://blend-exchange.giantcowfilms.com/embedImage.png?bid=<?php echo $blend->id; ?>" />](https://blend-exchange.giantcowfilms.com/b/<?php echo $blend->id; ?>/)</textarea>
             <div id="usageNotice">
                 <h2>
                     Disclaimer:
@@ -138,7 +141,7 @@
                         $("#flagFile").hide();
                         alert([result]);
                     },
-                    data: { id: "<?php echo $blendData["id"] ?>", flag: value }
+                    data: { id: "<?php echo $blend->id ?>", flag: value }
                 });
             });
             $("#favoriteBtn").click(function () {
@@ -148,7 +151,7 @@
                     success: function (result) {
                         alert([result]);
                     },
-                    data: { id: "<?php echo $blendData["id"] ?>"}
+                    data: { id: "<?php echo $blend->id ?>"}
                 });
             });
             //Events for embed
@@ -165,7 +168,7 @@
                 $.ajax({
                     url: "/admin/adminTools/",
                     type: "POST",
-                    data: { fileId: "<?php echo $blendData["id"] ?>", act: "delete"},
+                    data: { fileId: "<?php echo $blend->id ?>", act: "delete"},
                     success: function (r) {
                         alert([r]);
                     }
@@ -179,7 +182,7 @@
                 $.ajax({
                     url: "/admin/adminTools/",
                     type: "POST",
-                    data: { fileId: "<?php echo $blendData["id"] ?>", act: "Comment", text: comment },
+                    data: { fileId: "<?php echo $blend->id ?>", act: "Comment", text: comment },
                     success: function () {
 
                     }
@@ -193,7 +196,7 @@
                 $.ajax({
                     url: "/admin/adminTools/",
                     type: "POST",
-                    data: { fileId: "<?php echo $blendData["id"] ?>", act: "setValid", type: valid },
+                    data: { fileId: "<?php echo $blend->id ?>", act: "setValid", type: valid },
                     success: function (r) {
                         alert([r]);
                     }
@@ -211,11 +214,11 @@
                 var flagId = $("#adminFlagSelect option:selected").val();
 
                 $(document).on("click", "#adminFlagContinue", function () {
-                    flagId = $("#adminFlagSelect option:selected").val();
+                    flagId = $("#adminFlagSelect").val();
                     $.ajax({
                         url: "/admin/adminTools/",
                         type: "POST",
-                        data: { fileId: "<?php echo $blendData["id"] ?>", act: "actOnFlag", flagId: flagId, type: action },
+                        data: { fileId: "<?php echo $blend->id ?>", act: "actOnFlag", flagId: flagId, type: action },
                         success: function (r) {
                             alert([r]);
                         }

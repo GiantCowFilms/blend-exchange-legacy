@@ -24,13 +24,14 @@ include("../../parts/requireLogin.php"); ?>
             $type = $_POST["type"];
             $type = ($type == "accept")? 1 : 2;
             $test = $db->prepare("UPDATE `accesses` SET `accept`=:accept WHERE `id`=:flagId");
-            var_dump($test);
+            //var_dump($test);
             $test->execute(
                 array(
                 'flagId' => $flagId,
                 'accept' => $type
                 )
             );
+            echo "Flag was accepted";
             break;
         case "setValid":
             $type = $_POST["type"];

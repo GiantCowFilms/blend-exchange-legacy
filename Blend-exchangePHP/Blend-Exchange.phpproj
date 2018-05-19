@@ -44,6 +44,7 @@
     <Compile Include="parts\admin\utils\updateUrls.php" />
     <Compile Include="parts\blendViewCount.php" />
     <Compile Include="parts\blendDownloadCount.php" />
+    <Compile Include="parts\blend\BlendFile.php" />
     <Compile Include="parts\DynamicAd.php" />
     <Compile Include="parts\getQuotaInfo.php" />
     <Compile Include="parts\logger.php" />
@@ -247,6 +248,7 @@
     <Folder Include="admin\runUtil\" />
     <Folder Include="finish\verifyUrl\" />
     <Folder Include="logs\" />
+    <Folder Include="parts\blend\" />
     <Folder Include="register\" />
     <Folder Include="login\" />
     <Folder Include="users\update\" />

@@ -14,11 +14,11 @@
         Please select flag
         <select id="adminFlagSelect">
             <?php 
-            foreach ($blendData["flags"] as $flag)
+            foreach ($blend->flags as $flag)
             {
-                var_dump($flag["accept"]);
+                //var_dump($flag["accept"]);
                 if ($flag["accept"] == 0){
-                    echo "<option val=\"".$flag["id"]."\">".$flag["val"]." (id: ".$flag["id"].")</option>";   
+                    echo "<option value=\"".$flag["id"]."\">".$flag["val"]." (id: ".$flag["id"].")</option>";   
                 }
             }
             ?>
