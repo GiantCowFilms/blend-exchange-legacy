@@ -101,7 +101,7 @@
         </div>
         <script src="/jquery.js"></script>
         <script src="/dropzone.js"></script>
-        <script>
+        <script type="text/javascript">
             <?php             
             if ($virusAlert){
                 echo '            $(document).on("click", "#downloadFile a", function (e) {
@@ -134,6 +134,13 @@
             });
             $("#flagFileBtn").click(function () {
                 var value = $("input:radio[name=offense]:checked").val();
+                if (value === "Other") {
+                   var custom = $("input[name=custom_offense]").val();
+                   value = (custom.length > 5) ? custom : value;
+                }
+                if (value === "") {
+                     alert(["Please provide a reason for flagging this file."]);
+                }
                 $.ajax({
                     url: "/flag",
                     type: "get",
