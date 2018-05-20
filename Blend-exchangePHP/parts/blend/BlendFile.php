@@ -196,26 +196,20 @@ class BlendFile
     }
 
     public function __get ($name) {
-        return $this->properties[$name];
+        $value = $this->properties[$name];
+
+        //Add a small random value to view/download counts to prevent IP checking.
+        $randomize = ['downloads','views','favorites'];
+        if (in_array($name,$randomize)) {
+            $value = max($value + rand(0,6) - 3,0);
+        }
+
+
+        return $value;
     }
 
     public function save() {
         global $db;
-        //$this->properties['id'] = $this->id;
-        //unset($this->properties['id'] );
-        //unset($this->properties['fileGoogleId'] );
-        ////unset($this->properties['fileName'] );
-        //unset($this->properties['views'] );
-        //unset($this->properties['downloads'] );
-        //unset($this->properties['deleted'] );
-        //unset($this->properties['flags'] );
-        //unset($this->properties['adminComment'] );
-        //unset($this->properties['date'] );
-        //unset($this->properties['uploaderIp'] );
-        //unset($this->properties['questionLink'] );
-        //unset($this->properties['password'] );
-        //unset($this->properties['owner'] );
-        //unset($this->properties['fileSize'] );
 
         $query = 'INSERT INTO `blends` SET `id`=NULL,';
         $setting_query = '';
