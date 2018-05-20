@@ -10,7 +10,7 @@
             </form>
             <div class="bodyStack">
                 <p>
-<b>Consent is required to upload .blend files:</b></p>
+<b>Terms of Service:</b></p>
                 <div id="privacyAgreements">
                     <?php include("privacy/consentRequirements.php");
                           echo $upload_consent_requirements->generateConsentFormSegement();

@@ -1,9 +1,9 @@
 <h1>Register</h1>
-<form id="registerForm" style="width: 800px;">
+<form id="registerForm" style="width: 400px;">
     <div id="registerFormError" class="nwDanger noticeWarning" style="display: none; margin-bottom: 10px;">
         Register failed
     </div>
-    <div style="width: 375px; display: inline-block;" class="bodyStack">
+    <div class="bodyStack">
         <div style="margin-bottom: 10px;">
             Please do not register for an account if your are a citizen of the european union.
         </div>
@@ -11,9 +11,6 @@
         <input id="email" class="txtBlue bodyStack" placeholder="Email" />
         <input type="password" id="password" class="txtBlue bodyStack" placeholder="Password" />
         <input type="password" id="confirmPassword" class="txtBlue bodyStack" placeholder="Confirm Password" />
-    </div>
-    <div style="width: 375px; margin-left: 25px; display: inline-block; vertical-align:top;" class="bodyStack">
-        <h4 style="margin-top: 0">Privacy Requirements</h4>
         <?php include("privacy/consentRequirements.php");
               echo $register_consent_requirements->generateConsentFormSegement();
         ?>
