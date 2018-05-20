@@ -89,17 +89,25 @@
         $userId = 0;
     }
     
-    include("../parts/database.php"); 
-    $db->prepare("INSERT INTO `blends` SET `id`=NULL, `fileName`=:fileName, `fileGoogleId`='".$createdFile->id."', `flags`='', `views`=0, `downloads`=0, `password`=:password, `uploaderIp`='".$ipAdress."', `questionLink`=:qurl, `fileSize`='".$dataSize."', `date`=NOW(), `owner`=:uid, `valid`='0', `adminComment`=''")->execute(
-        array(
-        'fileName' => $_FILES['file']["name"],
-        'password' => hash("sha256", $password, false),
-        'uid' => $userId,
-        'qurl' => $questionUrl,
-        )
-    );
-   
+    include("../parts/database.php");
     
+    require_once '../parts/blend/BlendFile.php';
+
+    $blend = BlendFile::createFromUpload($service,$_FILES['file']);
+    $blend->uploaderIp = $ipAdress;
+    $blend->questionLink = $questionUrl;
+    $blend->password = hash("sha256", $password, false);
+    $blend->owner = $userId;
+    //$db->prepare("INSERT INTO `blends` SET `id`=NULL, `fileName`=:fileName, `fileGoogleId`='".$createdFile->id."', `flags`='', `views`=0, `downloads`=0, `password`=:password, `uploaderIp`='".$ipAdress."', `questionLink`=:qurl, `fileSize`='".$dataSize."', `date`=NOW(), `owner`=:uid, `valid`='0', `adminComment`='',`deleted`=0")->execute(
+    //    array(
+    //    'fileName' => $_FILES['file']["name"],
+    //    'password' => hash("sha256", $password, false),
+    //    'uid' => $userId,
+    //    'qurl' => $questionUrl,
+    //    )
+    //);
+    $blend->save();
+    $blend->id = $db->lastInsertId("Id");
     $blendId = $db->lastInsertId("Id");
     
     //Remove just cause!
@@ -107,16 +115,21 @@
         unset($userId);
     }
     
-    $blendData["id"] = $blendId;
-    $blendData["fileName"] = $_FILES['file']["name"];
-    $blendData["questionLink"] = $questionUrl;
-    $blendData["fileSize"] = $dataSize;
-    $blendData["views"] = 0;
-    $blendData["downloads"] = 0;
-    $blendData["flags"] = [];
-    $blendData["favorites"] = 0;
-    $blendData["adminComment"] = "";
-    $blendData["deleted"] = 0;
+    $blend->loadDownloads();
+    $blend->loadFavorites();
+    $blend->loadViews();
+    $blend->loadFlags();
+
+    //$blendData["id"] = $blendId;
+    //$blendData["fileName"] = $_FILES['file']["name"];
+    //$blendData["questionLink"] = $questionUrl;
+    //$blendData["fileSize"] = $dataSize;
+    //$blendData["views"] = 0;
+    //$blendData["downloads"] = 0;
+    //$blendData["flags"] = [];
+    //$blendData["favorites"] = 0;
+    //$blendData["adminComment"] = "";
+    //$blendData["deleted"] = 0;
     ?>
     <?php include("../parts/header.php"); ?>
     <?php include("../parts/downloadPage.php"); ?>

@@ -22,6 +22,8 @@ class BlendFile
     }
 
     public static function createFromUpload($google_drive_service,$file) {
+        $debug = false;
+
         $drive_file = new Google_Service_Drive_DriveFile();
         $drive_file->setTitle($file['name']);
         $drive_file->setDescription('Blend-Exchange User File');
@@ -30,7 +32,7 @@ class BlendFile
         $data = fopen($file['tmp_name'],"rb");
         $dataSize = filesize($file['tmp_name']);
 
-        $google_drive_service->client->setDefer(true);
+        $google_drive_service->getClient()->setDefer(true);
         $request = $google_drive_service->files->insert($drive_file);
 
         //Set size of chuncks for upload
@@ -38,7 +40,7 @@ class BlendFile
 
         // Create a media file upload to represent our upload process.
         $media = new Google_Http_MediaFileUpload(
-          $google_drive_service->client,
+          $google_drive_service->getClient(),
           $request,
           'application/octet-stream',
           null,
@@ -47,32 +49,39 @@ class BlendFile
         );
         $media->setFileSize($dataSize);
 
-        // Upload the various chunks. $status will be false until the process is
-        // complete.
-        $status = false;
-        $handle = $data;
-        while (!$status && !feof($handle)) {
-            $chunk = fread($handle, $chunkSizeBytes);
-            $status = $media->nextChunk($chunk);
+        //Avoid uploading billions of teset files when debugging
+        if (!$debug) {
+
+            // Upload the various chunks. $status will be false until the process is
+            // complete.
+            $status = false;
+            $handle = $data;
+            while (!$status && !feof($handle)) {
+                $chunk = fread($handle, $chunkSizeBytes);
+                $status = $media->nextChunk($chunk);
+            }
+
+            // The final value of $status will be the data from the API for the object
+            // that has been uploaded.
+            $result = false;
+            if($status != false) {
+                $result = $status;
+            }
+
+            fclose($handle);
+            // Reset to the client to execute requests immediately in the future.
+            $google_drive_service->getClient()->setDefer(false);
+
+            if(!$result) {
+                throw new Error("File upload failed (API Failure)");
+                return;
+            }
+
+            $createdFile = $result;
+        } else {
+            $createdFile = new stdClass();
+            $createdFile->id = 'demo file';
         }
-
-        // The final value of $status will be the data from the API for the object
-        // that has been uploaded.
-        $result = false;
-        if($status != false) {
-            $result = $status;
-        }
-
-        fclose($handle);
-        // Reset to the client to execute requests immediately in the future.
-        $client->setDefer(false);
-
-        if(!$result) {
-            throw new Error("File upload failed (API Failure)");
-            return;
-        }
-
-        $createdFile = $result;
 
         $blend = new BlendFile($google_drive_service);
         $blend->fileGoogleId = $createdFile->id;
@@ -80,7 +89,11 @@ class BlendFile
         $blend->fileName = $file["name"];
         $blend->views = 0;
         $blend->downloads = 0;
+        $blend->deleted = 0;
         $blend->flags = '';
+        $blend->adminComment = '';
+        $blend->date = date('Y-m-d H:i:s');
+        $blend->valid = 0;
         return $blend;
     }
 
@@ -188,12 +201,38 @@ class BlendFile
 
     public function save() {
         global $db;
-        $query = 'INSERT INTO `blends` SET ';
+        //$this->properties['id'] = $this->id;
+        //unset($this->properties['id'] );
+        //unset($this->properties['fileGoogleId'] );
+        ////unset($this->properties['fileName'] );
+        //unset($this->properties['views'] );
+        //unset($this->properties['downloads'] );
+        //unset($this->properties['deleted'] );
+        //unset($this->properties['flags'] );
+        //unset($this->properties['adminComment'] );
+        //unset($this->properties['date'] );
+        //unset($this->properties['uploaderIp'] );
+        //unset($this->properties['questionLink'] );
+        //unset($this->properties['password'] );
+        //unset($this->properties['owner'] );
+        //unset($this->properties['fileSize'] );
+
+        $query = 'INSERT INTO `blends` SET `id`=NULL,';
+        $setting_query = '';
         foreach ($this->properties as $prop => $value) {
-            $setting_query = $setting_query . '`'.$prop.'=:'.$prop.'`';
+            $setting_query = $setting_query . ' `'.$prop.'`=:'.$prop.',';
         }
         $setting_query = substr($setting_query,0,-1); //Remove last comma
-        $query = $query . $setting_query . ' ON DUPLICATE KEY UPDATE ' . $setting_query;
+        $updating_query = '';
+        foreach ($this->properties as $prop => $value) {
+            $updating_query = $updating_query . ' `'.$prop.'`=VALUES('.$prop.'),';
+        }
+        $updating_query = substr($updating_query,0,-1); //Remove last comma
+        $blendId = 'NULL';
+        if($this->id !== null) {
+            $blendId = $this->id;
+        }
+        $query = $query . $setting_query . ' ON DUPLICATE KEY UPDATE `id`='.$blendId.',' . $updating_query;
         $db->prepare($query)->execute($this->properties);
     }
 }
