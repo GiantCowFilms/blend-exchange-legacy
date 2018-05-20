@@ -5,9 +5,9 @@ if(isset($requireAdmin) == false)
     $requireAdmin = false;
 };
 
- if (session_status() == PHP_SESSION_NONE) {
+if (session_status() == PHP_SESSION_NONE && isset($_COOKIE["PHPSESSID"])) {
      session_start();
- }
+}
 $loggedIn = false;
 if((isset($_SESSION["loggedIn"]) == true) && ($_SESSION["loggedIn"] == true)){
     $userId = $_SESSION["userId"] ;

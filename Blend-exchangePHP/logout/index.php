@@ -2,7 +2,7 @@
     $requireAdmin = false;
     include("../parts/requireLogin.php"); ?>
 <?php 
-if (session_status() == PHP_SESSION_NONE) {
+if (session_status() == PHP_SESSION_NONE && isset($_COOKIE["PHPSESSID"])) {
     session_start();
 }
 $_SESSION["loggedIn"] = false;

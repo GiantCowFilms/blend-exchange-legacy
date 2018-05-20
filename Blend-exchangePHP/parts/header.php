@@ -24,4 +24,4 @@
             </ul>
       </div>
    </div>
-    <div class="bodyStack noticeWarning nwInfo">Notice: US based blend-exchange users. Congress is about to vote on whether to repeal Net Neutrality. Without Net Neutrality, free independantly run websites no longer enjoy protection from extortion from ISPs. Do you really want to trust <i>Comcast</i> and <i>Verizon</i> to maintain a free internet? <a href="https://www.battleforthenet.com/">Learn more.</a> </div>
+    <!-- Removed for now (Sentate vote passed). Will re-publish when the House of Reps vote comes up: <div class="bodyStack noticeWarning nwInfo">Notice: US based blend-exchange users. Congress is about to vote on whether to repeal Net Neutrality. Without Net Neutrality, free independantly run websites no longer enjoy protection from extortion from ISPs. Do you really want to trust <i>Comcast</i> and <i>Verizon</i> to maintain a free internet? <a href="https://www.battleforthenet.com/">Learn more.</a> </div>-->

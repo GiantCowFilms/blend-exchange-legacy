@@ -24,18 +24,71 @@ $(".centerText").click(function (e) {
 $("#uploadText").click(function (e) {
     e.stopPropagation();
 });
-blendDropzone.on("success", function (e, r) {
-    //Alert for iframe
-    window.parent.postMessage({ name: 'uploadAct' }, "*");
-    //Alert for popup
-    if (window.opener != null && !window.opener.closed) {
-        window.opener.postMessage({name: 'uploadAct'}, "*");
+blendDropzone.on("success", function (file, r) {
+    try {
+        var result = jQuery.parseJSON(r);        
+    } catch (e) {
+        var result = {status: 1};
     }
-    document.write(r);
+    if (result.status !== 1) {
+        blendDropzone.removeFile(file);
+        file.status = undefined;
+        file.accepted = undefined;
+        blendDropzone.addFile(file);
+        showError(result.message, $("#" + result.field));
+    } else { 
+        //Alert for iframe
+        window.parent.postMessage({ name: 'uploadAct' }, "*");
+        //Alert for popup
+        if (window.opener != null && !window.opener.closed) {
+            window.opener.postMessage({name: 'uploadAct'}, "*");
+        }
+        document.write(r);
+    }
 });
+
+var errorElementTimeout;
+
+function showError(text, elm) {
+    var uploadText = $("#uploadUrlError").html();
+
+    $("#uploadUrlError").html(text);
+
+    $("#uploadUrlError").insertBefore(elm);
+
+    $(elm).removeClass("txtBlueError")
+    //Delay is needed for reset due to a "bug?"
+    setTimeout(function () { $(elm).addClass("txtBlueError") }, 10);
+
+    $("#uploadUrlError").show();
+    clearTimeout(errorElementTimeout);
+    errorElementTimeout = setTimeout(function () {
+        $("#uploadUrlError").hide();
+    }, 8000);
+}
+
 $("#upload").click(function () {
-    var password = $("#password").val().trim();
+    var formData = [];
+    $('#mainContainer input').each(function () {
+        if ($(this).is(':checkbox')) {
+            var value = $(this).is(":checked");
+        } else {
+            var value = $(this).val();
+        }
+        var name = $(this).attr('id');
+        formData.push({
+            name: name,
+            value: value
+        });
+    });
+
+    var password = '';
     var questionUrl = $("#questionUrl").val().trim();
+
+    var consent_params = "";
+    formData.forEach(function (value,index) {
+        consent_params += `&${value.name}=${value.value}`;
+    })
     //Better Regex (WIP): /^^https?:\/\/blender.stackexchange.com\/q(?:uestions|)\/[0-9]+\/(?:[A-z\-#0-9\/_?=]+|[0-9]+)?$/g
     $.ajax({
         url: "/finish/verifyUrl",
@@ -43,38 +96,25 @@ $("#upload").click(function () {
         success: function (result) {
             result = jQuery.parseJSON(result);
             if (result.status == 1) {
-                blendDropzone.options.url = "/finish/?url=" + questionUrl + "&password=" + password;
+                blendDropzone.options.url = "/finish/?url=" + questionUrl + "&password=" + password + consent_params;
                 blendDropzone.processQueue();
             } else {
-                //Skip the message
-                //if (result.message != '') {
-                //    $("#uploadUrlError").text(result.message);
-                //}
-                $("#uploadUrlError").show();
-                setTimeout(function () { $("#uploadUrlError").hide(); }, 8000);
-                $("#questionUrl").removeClass("txtBlueError")
-                //Delay is needed for reset due to a "bug?"
-                setTimeout(function () { $("#questionUrl").addClass("txtBlueError") }, 10);
+                showError(result.message, $("#" + result.field));
             }
         },
         data: { url: questionUrl }
     });
     if (/^https?:\/\/blender.stackexchange.com\/q(?:uestions)?\/[0-9]+\/(?:[A-z\-#0-9\/_?=&]+|[0-9]+)?$/.test(questionUrl)) {
-        blendDropzone.options.url = "/finish/?url=" + questionUrl + "&password=" + password;
+        blendDropzone.options.url = "/finish/?url=" + questionUrl + "&password=" + password + consent_params;
         blendDropzone.processQueue();
     } else {
-        var uploadText = $("#uploadUrlError").html();
+        var errorText = 'The provided url is not valid, please copy and paste the <b>entire</b> url, including the "https://" header.';
         if (/^https?:\/\/blender.stackexchange.com\/a(?:nswer)?\/[0-9]+\/[0-9]+$/.test(questionUrl)) {
-            $("#uploadUrlError").html("Please use the <b>Question Url, not the Answer Url.</b> We cannot correctly process Answer Urls because of technical difficulties.");
+            errorText = $("#uploadUrlError").html("Please use the <b>Question Url, not the Answer Url.</b> We cannot correctly process Answer Urls because of technical difficulties.");
         }
-        $("#uploadUrlError").show();
-        setTimeout(function () {
-            $("#uploadUrlError").hide();
-            $("#uploadUrlError").html(uploadText);
-        }, 8000);
-        $("#questionUrl").removeClass("txtBlueError")
-        //Delay is needed for reset due to a "bug?"
-        setTimeout(function () {$("#questionUrl").addClass("txtBlueError")}, 10);
+
+        showError(errorText, $("#questionUrl"));
+        return;
     }
 });
 $("#cancel").click(function () {

@@ -1,26 +1,48 @@
  <?php
     session_start();
- 
+
     $username = $_GET["username"];
     $email = $_GET["email"];
     $password = $_GET["password"];
     $passwordConfirm = $_GET["confirmPassword"];
-    
-    include_once($_SERVER["DOCUMENT_ROOT"]."/parts/logger.php");
-    logger("REGISTER_TRY IP_HASH:".hash("sha256",$_SERVER['REMOTE_ADDR'], false)."/logs/","register.log");
-    
-    if ($password!= $passwordConfirm){
+
+    require($_SERVER["DOCUMENT_ROOT"]."/parts/privacy/consentRequirements.php");
+    if(!$register_consent_requirements->verifyConsentFormSegement($_GET)) {
         echo '{
             "status": 0,
-            "message": "Passwords do not match"
+            "message": "' .$register_consent_requirements->lastError["error"]. '",
+            "field": "' . $register_consent_requirements->lastError["field"] . '"
         }';
         exit();
     }
+
+    include_once($_SERVER["DOCUMENT_ROOT"]."/parts/logger.php");
+    logger("REGISTER_TRY IP_HASH:".hash("sha256",$_SERVER['REMOTE_ADDR'], false)."/logs/","register.log");
+
+    if (strlen($username)  < 6) {
+        echo '{
+            "status": 0,
+            "message": "Username must be at least 6 characters long.",
+            "field": "username"
+        }';
+        exit();
+    }
+
+    if ($password != $passwordConfirm){
+        echo '{
+            "status": 0,
+            "message": "Passwords do not match",
+            "field": "confirmPassword"
+        }';
+        exit();
+    }
+
     //Check if it is a sha256 hash, if not, throw in the towel!
     if(!preg_match('/^[A-Fa-f0-9]{64}$/',$password)){
         echo '{
             "status": 0,
-            "message": "Passwords is not correct. Please limit to between 5-20 characters, that fall under this set: a-z,0-9,_,-,!,@,#,$,%,^,&,"
+            "message": "Passwords is not correct. Please limit to between 5-20 characters, that fall under this set: a-z,0-9,_,-,!,@,#,$,%,^,&,",
+            "field": "password"
         }';
         logger("REGISTER_FAIL TYPE:PASS_NOT_HASH IP_HASH:".hash("sha256",$_SERVER['REMOTE_ADDR'], false),$_SERVER["DOCUMENT_ROOT"]."/logs/","register.log");
         exit();
@@ -28,13 +50,15 @@
      if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
          echo '{
             "status": 0,
-            "message": "Please include a valid email"
+            "message": "Please include a valid email",
+            "field": "email"
         }';
          logger("REGISTER_FAIL TYPE:EMAIL IP_HASH:".hash("sha256",$_SERVER['REMOTE_ADDR'], false),$_SERVER["DOCUMENT_ROOT"]."/logs/","register.log");
+         exit();
      };
-     
+
     $secretKeys = json_decode(file_get_contents("../../secret/secret.json"));
-    
+
     include("../../parts/database.php");
 
     $userData = $db->prepare("INSERT INTO `users` SET `admin`=0,`email`=:email,`password`=:password,`username`=:username");
@@ -51,5 +75,5 @@
             "status": 1,
             "message": "You are registered"
         }';
-    
+
 ?>

@@ -10,7 +10,7 @@ if(verifyUrl($url,true)){
     //Send status
     echo '{
             "status": 0,
-            "message": "Invalid Url"
+            "message": "The provided url is not valid, please copy and paste the <b>entire</b> url, including the \"https://\" header."
         }';
 }
 ?>

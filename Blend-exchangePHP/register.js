@@ -1,8 +1,32 @@
-﻿function registerUser () {
+﻿var errorTimeout;
+
+var errorElementTimeout;
+
+function showError(text, elm) {
+    $("#registerFormError").html(text);
+
+    $("#registerFormError").insertBefore(elm);
+
+    $(elm).removeClass("txtBlueError")
+    //Delay is needed for reset due to a "bug?"
+    setTimeout(function () { $(elm).addClass("txtBlueError") }, 10);
+
+    $("#registerFormError").show();
+    clearTimeout(errorElementTimeout);
+    errorElementTimeout = setTimeout(function () {
+        $("#registerFormError").hide();
+    }, 8000);
+}
+
+function registerUser() {
     //How to read a form like a pro: use a loop to cycle through each...
     var formData = [];
     $('#registerForm input').each(function () {
-        var value = $(this).val()
+        if ($(this).is(':checkbox')) {
+            var value = $(this).is(":checked");
+        } else {
+            var value = $(this).val();
+        }
         var name = $(this).attr('id');
         formData.push({ 
             name: name,
@@ -32,11 +56,7 @@
             if (message.status == 1) {
                 location.reload();
             } else {
-                $("#registerFormError").text(message.message);
-                $("#registerFormError").show();
-                setTimeout(function () {
-                    $("#registerFormError").fadeOut("400");
-                }, 8000);
+                showError(message.message, $('#' + message.field));
             }
         },
         data: loginData

@@ -4,6 +4,8 @@
 
             <h1>Blend-Exchange Privacy Policy</h1>
 
+            <p>This policy is effective May 25th.</p>
+
             In this document Blend-Exchange ("we","us") refers to the operators of this website ("the Blend-Exchange service","the service"). You ("the user","user") refers to any user of the Blend-Exchange service. Content providers refers to services that provide data either as loadable resources (including but not limited to fonts, javascript files and images) or technical services (including bot not limited file storage services).
 
             <h2>Data Sharing</h2>
@@ -104,7 +106,7 @@
 
             These actions require users to opt-in by performing an action and/or visiting a page.
 
-            <h2>Uses of Data</h2>
+            <h2>Data Use</h2>
 
             The data Blend-Exchange collects is used to provide the Blend-Exchange service. Specifically, it is used to:
 

@@ -1,11 +1,26 @@
     <?php
     
     //Get information from form
+
+    //VERIFY PRIVACY CONSENT
+    require($_SERVER["DOCUMENT_ROOT"]."/parts/privacy/consentRequirements.php");
+    if(!$upload_consent_requirements->verifyConsentFormSegement($_GET)) {
+        echo '{
+            "status": 0,
+            "message": "' .$upload_consent_requirements->lastError["error"]. '",
+            "field": "' . $upload_consent_requirements->lastError["field"] . '"
+        }';
+        exit();
+    }
+
+
+    include("../parts/checkLogin.php");
+
     include("../parts/verifyUrl.php");
     
     $questionUrl = $_GET["url"];
     if(!verifyUrl($questionUrl,true)){
-        echo "Invalid url";
+        echo 'The provided url is not valid, please copy and paste the <b>entire</b> url, including the "https://" header.';
         exit;
     };
     $questionUrl =  removeInvalid($questionUrl);
@@ -82,8 +97,7 @@
     //Get IP adress
     $ipAdress = $_SERVER['REMOTE_ADDR'];
     $ipAdress = hash("sha256", $ipAdress, false);
-    
-    include("../parts/checkLogin.php");
+   
     
     if($loggedIn == false){
         $userId = 0;
