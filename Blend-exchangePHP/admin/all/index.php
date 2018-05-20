@@ -35,7 +35,7 @@
 
                     foreach ($files as $file)
                     {
-                        echo "<tr><td><a href='/b/".$file["id"]."/'>".$file["fileName"]."</a></td><td><a href='".$file["questionLink"]."'>".substr($file["questionLink"], 32, 60)."</a></td><td>".round(intval($file["fileSize"])/1000000, 2, PHP_ROUND_HALF_UP)." MB</td><td><a href='/users/".$file["owner"]."/'>".$file["username"]."</a></td><td>".$file["views"]."</td><td>".$file["date"]."</td></tr>";
+                        echo "<tr><td><a href='/b/".$file["id"]."/'>".htmlspecialchars($file["fileName"])."</a></td><td><a href='".$file["questionLink"]."'>".substr($file["questionLink"], 32, 60)."</a></td><td>".round(intval($file["fileSize"])/1000000, 2, PHP_ROUND_HALF_UP)." MB</td><td><a href='/users/".$file["owner"]."/'>".$file["username"]."</a></td><td>".$file["views"]."</td><td>".$file["date"]."</td></tr>";
                     }
                     ?>
                 </tbody>

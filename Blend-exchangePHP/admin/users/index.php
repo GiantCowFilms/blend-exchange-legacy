@@ -24,7 +24,7 @@
 
                     foreach ($users as $user)
                     {
-                        echo "<tr><td id='".$user["id"]."'><a href='/users/".$user["id"]."/'>".$user["username"]."</a></td><td><a href='mailto:".$user["email"]."'>".$user["email"]."</a></td><td>".$user["numBlends"]."</td></tr>";
+                        echo "<tr><td id='".$user["id"]."'><a href='/users/".$user["id"]."/'>".htmlspecialchars($user["username"])."</a></td><td><a href='mailto:".$user["email"]."'>".htmlspecialchars($user["email"])."</a></td><td>".$user["numBlends"]."</td></tr>";
                     }
                     ?>
                 </tbody>

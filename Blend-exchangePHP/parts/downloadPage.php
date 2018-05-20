@@ -53,10 +53,10 @@
                         <img class="blendDisplayIcon" src="/blenderFileIcon.png"/>
                         <div class="blendDisplayContainer" style="display: inline-block; margin-top: 25px; text-align: left;">
                             <h2 class="blendDisplayTitle">
-                                <?php echo $blend->fileName;  ?>
+                                <?php echo htmlspecialchars($blend->fileName);  ?>
                             </h2>
                             <span class="downloadQuestionLink">
-                                 <a href="<?php echo $blend->questionLink ?>">View Question</a>
+                                <a href="<?php echo urlencode($blend->questionLink); ?>">View Question</a>
                                 <br />
                                 <?php echo round(intval($blend->fileSize)/1000000, 1, PHP_ROUND_HALF_UP); ?> MB
                                 <br />
@@ -76,7 +76,7 @@
                 </div><div id="favoriteBtn" class="btnBlue downloadBtnRow">
                     Favorite
                 </div><div id="downloadFile" class="btnBlue downloadBtnRow" style="margin-right: 0">
-                    <a href="/d/<?php echo $blend->id ?>/<?php echo $blend->fileName ?>">Download</a>
+                    <a href="/d/<?php echo $blend->id ?>/<?php echo urlencode($blend->fileName) ?>">Download</a>
                 </div>
             </div>
             <?php include("flagForm.php"); ?>

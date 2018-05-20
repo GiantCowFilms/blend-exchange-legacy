@@ -18,7 +18,7 @@
 
                     foreach ($files as $file)
                     {
-                        echo "<tr><td><a href='/b/".$file["id"]."/'>".$file["fileName"]."</a></td><td><a href='".$file["questionLink"]."'>".substr($file["questionLink"], 32, 60)."</a></td><td>".$file["val"]."</td><td>".$file["date"]."</td></tr>";
+                        echo "<tr><td><a href='/b/".$file["id"]."/'>".htmlspecialchars($file["fileName"])."</a></td><td><a href='".urlencode($file["questionLink"])."'>".substr($file["questionLink"], 32, 60)."</a></td><td>".htmlspecialchars($file["val"])."</td><td>".$file["date"]."</td></tr>";
                     }
                     ?>
                 </tbody>
@@ -34,7 +34,7 @@
                 <?php
                 foreach ($autoFlags as $autoFlag)
                 {
-                    echo "<tr><td><a href='/b/".$autoFlag["id"]."/'>".$autoFlag["fileName"]."</a></td><td><a href='".$autoFlag["questionLink"]."'>".substr($autoFlag["questionLink"], 32, 60)."</a></td><td>".$autoFlag["val"]."</td><td>".$autoFlag["validRefs"]."</td><td>".$autoFlag["invalidRefs"]."</td></tr>";
+                    echo "<tr><td><a href='/b/".$autoFlag["id"]."/'>".htmlspecialchars($autoFlag["fileName"])."</a></td><td><a href='".$autoFlag["questionLink"]."'>".substr($autoFlag["questionLink"], 32, 60)."</a></td><td>".$autoFlag["val"]."</td><td>".$autoFlag["validRefs"]."</td><td>".$autoFlag["invalidRefs"]."</td></tr>";
                 }
                 ?>
                 </tbody>
