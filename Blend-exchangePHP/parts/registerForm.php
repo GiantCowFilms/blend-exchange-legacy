@@ -11,7 +11,7 @@
         <input id="email" class="txtBlue bodyStack" placeholder="Email" />
         <input type="password" id="password" class="txtBlue bodyStack" placeholder="Password" />
         <input type="password" id="confirmPassword" class="txtBlue bodyStack" placeholder="Confirm Password" />
-        <?php include("../parts/privacy/consentRequirements.php");
+        <?php include(dirname(__FILE__) . "/privacy/consentRequirements.php");
               echo $register_consent_requirements->generateConsentFormSegement();
         ?>
         For more information on how Blend-Exchange collects, stores, and processes your information, please see our

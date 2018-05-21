@@ -12,7 +12,7 @@
                 <p>
 <b>Terms of Service:</b></p>
                 <div id="privacyAgreements">
-                    <?php include("privacy/consentRequirements.php");
+                    <?php include(dirname(__FILE__) . "/privacy/consentRequirements.php");
                           echo $upload_consent_requirements->generateConsentFormSegement();
                     ?>                   
                     </div>
