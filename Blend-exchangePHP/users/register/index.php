@@ -63,6 +63,14 @@
 
     $userData = $db->prepare("INSERT IGNORE INTO `users` SET `admin`=0,`email`=:email,`password`=:password,`username`=:username");
     $userData->execute(array('username' => $username,"email" => $email,"password" => $password));
+    if($userData->rowCount() < 1) {
+        echo '{
+            "status": 0,
+            "message": "That email already in use.",
+            "field": "email"
+        }';
+        exit();
+    }
     $userId = $db->lastInsertId("Id");
     //Not the best way to check for results, doing the login check in a query might be bad, but it sure is fast!
         //Set session
