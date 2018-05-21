@@ -2,7 +2,7 @@
     session_start();
 
     $username = $_GET["username"];
-    $email = $_GET["email"];
+    $email = strtolower($_GET["email"]);
     $password = $_GET["password"];
     $passwordConfirm = $_GET["confirmPassword"];
 
@@ -61,7 +61,7 @@
 
     include("../../parts/database.php");
 
-    $userData = $db->prepare("INSERT INTO `users` SET `admin`=0,`email`=:email,`password`=:password,`username`=:username");
+    $userData = $db->prepare("INSERT IGNORE INTO `users` SET `admin`=0,`email`=:email,`password`=:password,`username`=:username");
     $userData->execute(array('username' => $username,"email" => $email,"password" => $password));
     $userId = $db->lastInsertId("Id");
     //Not the best way to check for results, doing the login check in a query might be bad, but it sure is fast!
