@@ -18,7 +18,7 @@
 
                     foreach ($files as $file)
                     {
-                        echo "<tr><td><a href='/b/".$file["id"]."/'>".htmlspecialchars($file["fileName"])."</a></td><td><a href='".urlencode($file["questionLink"])."'>".substr($file["questionLink"], 32, 60)."</a></td><td>".htmlspecialchars($file["val"])."</td><td>".$file["date"]."</td></tr>";
+                        echo "<tr><td><a href='/b/".$file["id"]."/'>".htmlspecialchars($file["fileName"])."</a></td><td><a href='".$file["questionLink"]."'>".substr($file["questionLink"], 32, 60)."</a></td><td>".htmlspecialchars($file["val"])."</td><td>".$file["date"]."</td></tr>";
                     }
                     ?>
                 </tbody>

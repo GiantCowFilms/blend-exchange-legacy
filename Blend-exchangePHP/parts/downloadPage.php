@@ -56,7 +56,7 @@
                                 <?php echo htmlspecialchars($blend->fileName);  ?>
                             </h2>
                             <span class="downloadQuestionLink">
-                                <a href="<?php echo urlencode($blend->questionLink); ?>">View Question</a>
+                                <a href="<?php echo $blend->questionLink; ?>">View Question</a>
                                 <br />
                                 <?php echo round(intval($blend->fileSize)/1000000, 1, PHP_ROUND_HALF_UP); ?> MB
                                 <br />
