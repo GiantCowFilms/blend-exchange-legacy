@@ -51,6 +51,7 @@ secret.json
 
 #log files
 *.log
+log/
 
 #node version
 Blend-exchangeNode/

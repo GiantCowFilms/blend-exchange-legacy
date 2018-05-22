@@ -5,6 +5,7 @@ if (session_status() == PHP_SESSION_NONE && isset($_COOKIE["PHPSESSID"])) {
    session_start();
    session_regenerate_id();
 }
+
 $loggedIn = false;
 $admin = false;
 if((isset($_SESSION["loggedIn"]) == true) && ($_SESSION["loggedIn"] == true)){

@@ -9,7 +9,7 @@
     }
     
     
-    logger("PAGE_HIT LOC:".$_SERVER['REQUEST_URI'].$ref,$_SERVER["DOCUMENT_ROOT"]."/logs/","hits.log");
+    logger("PAGE_HIT LOC:".$_SERVER['REQUEST_URI'].$ref,'NONE',$_SERVER["DOCUMENT_ROOT"]."/logs/","hits.log");
     
     ?>
 <!DOCTYPE html>

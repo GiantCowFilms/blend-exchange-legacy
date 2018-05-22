@@ -9,11 +9,11 @@
             In this document Blend-Exchange ("we","us") refers to the operators of this website ("the Blend-Exchange service","the service"). You ("the user","user") refers to any user of the Blend-Exchange service. Content providers refers to services that provide data either as loadable resources (including but not limited to fonts, javascript files and images) or technical services (including bot not limited file storage services).
 
             <h2>Data Sharing</h2>
-            We may share the data we collect (as defined byt the section on Data Collection) in various ways, including the following:
+            We may share the data we collect (as defined by the section on Data Collection) in various ways, including the following:
             
             <ul>
-                <li><b>In Aggregate Form:</b> Blend-Exchange will disclose your personal information when legally permissible in aggregate or anyonomized form so long as it cannot be reasonably used to identify you.</li>
-                <li><b>As Required by Law:</b> Any information held by Blend-Exchange will be disclosed to satisfy any particular law, legal process or governemental request.</li>
+                <li><b>In Aggregate Form:</b> Blend-Exchange will disclose your personal information when legally permissible in aggregate or anonymized form so long as it cannot be reasonably used to identify you.</li>
+                <li><b>As Required by Law:</b> Any information held by Blend-Exchange will be disclosed to satisfy any particular law, legal process or governmental request.</li>
                 <li><b>Third party providers:</b> Blend-Exchange shares your personal data with third party providers as is required to provide the Blend-Exchange service.</li>
                 <li>
                     <b>As required to operate the Blend-Exchange service</b> Some of the data we collect is shared to various 3rd parties (who these parties are is specified below in the section on Data Collection for each kind of data we collect). This is done when required to provide the Blend-Exchange service's functionality.
@@ -28,7 +28,7 @@
 
             <h3>Technical Data</h3>
 
-            "Technical Data" is data that your device sends our servers or provides to our webpage. This includes:
+            "Technical Data" is data that your device sends our servers or provides to our web page. This includes:
 
             <ul>
                 <li>IP Addresses</li>
@@ -51,14 +51,14 @@
                 <li>A reference to the current authenticated account (if the user is logged in).</li>
             </ul>
 
-            All of the listed data is available publicly for download. Blend files are stored using Google Drive. See their privacy polices for more details (<a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>).
+            All of the listed data is available publicly for download. Once data has been shared, you cannot revoke permission for Blend-Exchange to pubish and share this data. Blend-Exchange no longer possess control over data once it has been made public. Blend files are stored using Google Drive. See their privacy polices for more details (<a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>).
 
             <h3>Account Data</h3>
             <p>
                 User account data is all the data provided when creating an account. This includes:
             </p>
             <ul>
-                <li>The <b>username</b> provided when registering. This is stored in a database without encryption. This information is publicly  accessible without restriction.</li>
+                <li>The <b>username</b> provided when registering. This is stored in a database without encryption. This information is publicly accessible without restriction. Once it has been made public, Blend-Exchange looses control over this data.</li>
                 <li>The <b>email</b> provided when registering. This is stored in a database without encryption. This email is not publicly accessible, and will only be used to notify the user of the following:
                     <ul>
                         <li>Updates/Events relating to the security of the Blend-Exchange service and the user's personal information.</li>
@@ -125,7 +125,7 @@
             <h3>Accessing Data Held by Blend-Exchange</h3>
             <p>
                 The user profile includes links to the binary files uploaded. They can be downloaded from there in the original format in which they were uploaded.
-                The provided password cannot be retrieved in any form due to security concerns. Other account details can be obtained in plain text from the user profile page. Please contact blend-exchange if assistance is needed.
+                The provided password cannot be retrieved in any form due to security concerns. Other account details can be obtained in plain text from the user profile page. Please contact Blend-Exchange if assistance is needed.
             </p>
             <h3>Removal of Data Held by Blend-Exchange</h3>
              

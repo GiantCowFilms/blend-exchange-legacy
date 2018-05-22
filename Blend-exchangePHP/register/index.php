@@ -1,4 +1,5 @@
     <?php 
+    echo 'auth has been disabled, sorry'; exit();
     include("../parts/checkLogin.php");
     if($loggedIn == false){
         include("../parts/head.php");

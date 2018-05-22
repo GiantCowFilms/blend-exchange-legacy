@@ -1,4 +1,5 @@
     <?php 
+    echo 'auth has been disabled, sorry'; exit();
     $requireAdmin = false;
     include("../parts/requireLogin.php"); ?>
     <?php include("../parts/header.php"); ?>

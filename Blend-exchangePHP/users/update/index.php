@@ -1,12 +1,10 @@
  <?php
+ echo 'auth has been disabled, sorry'; exit();
     $requireAdmin = false;
-    include("../parts/requireLogin.php"); 
- 
- 
-    session_start();
-    
+    include("../../parts/requireLogin.php");
+
     $changePassword = true;
-    
+
     if(isset($_GET["username"])){
     $username = $_GET["username"];
     }
@@ -28,13 +26,13 @@
     } else {
         $changePassword = false;
     }
-    
-    
-    $id = $_GET["id"];
-    
+
+
+    $id = $userId;
+
     include_once($_SERVER["DOCUMENT_ROOT"]."/parts/logger.php");
-    logger("UPDATE_TRY ID:".$id." IP_HASH:".hash("sha256",$_SERVER['REMOTE_ADDR'], false),$_SERVER["DOCUMENT_ROOT"]."/logs/","update.log");
-    
+    logger("UPDATE_TRY ID:".$id,$_SERVER['REMOTE_ADDR'],$_SERVER["DOCUMENT_ROOT"]."/logs/","update.log");
+
     if($changePassword == true){
         if ($password!= $passwordConfirm){
             echo '{
@@ -67,10 +65,10 @@
         };
     }
     $secretKeys = json_decode(file_get_contents("../../secret/secret.json"));
-    
+
     include("../../parts/database.php");
     $userData = $db->prepare("SELECT `password` FROM `users` WHERE `id`=:uid");
-    $userData->execute(array('uid' => $id));    
+    $userData->execute(array('uid' => $id));
     $userData = $userData->fetchAll(PDO::FETCH_ASSOC);
     $matchPassword = $userData["0"]["password"];
     if($changePassword == true){
@@ -85,7 +83,7 @@
             exit();
         }
     }
-    
+
     $userData = $db->prepare("UPDATE `users` SET `email`=:email,`username`=:username WHERE `id`=:uid LIMIT 1");
     $userData->execute(array('username' => $username,"email" => $email, "uid" => $id ));
     //Not the best way to check for results, doing the login check in a query might be bad, but it sure is fast!
@@ -94,6 +92,6 @@
             "status": 1,
             "message": "Account Updated"
         }';
-        logger("UPDATE_SUCCESS DETAILS:[EMAIL:".$email.";USERNAME:".$username."] ID:".$id." IP_HASH:".hash("sha256",$_SERVER['REMOTE_ADDR'], false)."/logs/","update.log");
-    
+        logger("UPDATE_SUCCESS DETAILS:[EMAIL:".$email.";USERNAME:".$username."] ID:".$id,$_SERVER['REMOTE_ADDR'],$_SERVER["DOCUMENT_ROOT"]."/logs/","update.log");
+
 ?>
