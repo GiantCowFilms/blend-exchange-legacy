@@ -96,7 +96,7 @@ $("#upload").click(function () {
         success: function (result) {
             result = jQuery.parseJSON(result);
             if (result.status == 1) {
-                blendDropzone.options.url = "/finish/?url=" + questionUrl + "&password=" + password + consent_params;
+                blendDropzone.options.url = "/finish/?url=" + encodeURIComponent(questionUrl) + "&password=" + password + consent_params;
                 blendDropzone.processQueue();
             } else {
                 showError(result.message, $("#" + result.field));
@@ -105,7 +105,7 @@ $("#upload").click(function () {
         data: { url: questionUrl }
     });
     if (/^https?:\/\/blender.stackexchange.com\/q(?:uestions)?\/[0-9]+\/(?:[A-z\-#0-9\/_?=&]+|[0-9]+)?$/.test(questionUrl)) {
-        blendDropzone.options.url = "/finish/?url=" + questionUrl + "&password=" + password + consent_params;
+        blendDropzone.options.url = "/finish/?url=" + encodeURIComponent(questionUrl) + "&password=" + password + consent_params;
         blendDropzone.processQueue();
     } else {
         var errorText = 'The provided url is not valid, please copy and paste the <b>entire</b> url, including the "https://" header.';
