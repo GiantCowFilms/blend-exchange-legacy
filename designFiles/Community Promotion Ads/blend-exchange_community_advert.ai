@@ -48,7 +48,7 @@
                <rdf:li rdf:parseType="Resource">
                   <stMfs:linkForm>EmbedByReference</stMfs:linkForm>
                   <stMfs:reference rdf:parseType="Resource">
-                     <stRef:filePath>Q:\dml\WebDevelopment\Blend-Exchange\designFiles\Community Promotion Ads\C77A8E57.png</stRef:filePath>
+                     <stRef:filePath>C77A8E57.png</stRef:filePath>
                      <stRef:documentID>0</stRef:documentID>
                      <stRef:instanceID>0</stRef:instanceID>
                   </stMfs:reference>
@@ -58,7 +58,7 @@
          <xmpMM:Ingredients>
             <rdf:Bag>
                <rdf:li rdf:parseType="Resource">
-                  <stRef:filePath>Q:\dml\WebDevelopment\Blend-Exchange\designFiles\Community Promotion Ads\C77A8E57.png</stRef:filePath>
+                  <stRef:filePath>C77A8E57.png</stRef:filePath>
                   <stRef:documentID>0</stRef:documentID>
                   <stRef:instanceID>0</stRef:instanceID>
                </rdf:li>
@@ -350,7 +350,7 @@ endstreamendobj51 0 obj<</I true/K false/S/Transparency/Type/Group>>endobj5
 %%BoundingBox: -1599 -511 985 781
 %%HiResBoundingBox: -1598.6548614502 -510.345802426338 984.901847839356 780.56298828125
 %%DocumentProcessColors: Cyan Magenta Yellow Black
-%%DocumentFiles:Q:\dml\WebDevelopment\Blend-Exchange\designFiles\Community Promotion Ads\C77A8E57.png
+%%DocumentFiles:C77A8E57.png
 %AI5_FileFormat 13.0
 %AI12_BuildNumber: 147
 %AI3_ColorUsage: Color
